@@ -3,8 +3,8 @@ import ErrorPage from "../pages/ErrorPage";
 
 const API_URL = "https://restcountries.com/v3.1/all";
 
-function Featch({ onDataFeatch }) {
-  const [error, setError] = useState();
+function FetchApiData({ onDataFeatch }) {
+  const [error, setError] = useState(null);
   const [isloading, setIsloading] = useState(false);
 
   useEffect(() => {
@@ -36,4 +36,4 @@ function Featch({ onDataFeatch }) {
   return null;
 }
 
-export default Featch;
+export default FetchApiData;

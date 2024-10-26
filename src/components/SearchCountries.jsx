@@ -14,8 +14,7 @@ import {
 } from "./helper";
 
 function SearchCountries({ countries }) {
-
-  const { theme} = useTheme();
+  const { theme } = useTheme();
 
   const [searchedCountry, setSearchedCountry] = useState("");
   const [selectRegion, setSelectRegion] = useState("");
@@ -41,22 +40,29 @@ function SearchCountries({ countries }) {
 
   return (
     <>
-      <div className={` ${theme === "dark" ? "bg-veryDarkBlue-100 " : "bg-veryLightGray"}`}>
-        <div className={`px-6 py-8 flex flex-col gap-10 sm:flex-row sm:justify-between`}>
-        <div className=" bg-white w-full shadow-md rounded-md h-20 flex items-center sm:h-12 sm:w-2/6">
-          <FontAwesomeIcon
-            icon={serchicon}
-            size="xl"
-            className="text-gray-300 ml-10 sm:ml-6"
-          />
+      <div
+        className={` ${
+          theme === "dark" ? "bg-veryDarkBlue-100 " : "bg-veryLightGray"
+        } px-6 py-8 flex flex-col gap-10 sm:flex-row sm:justify-between`}
+      >
+        {/* for country search */}
+        <div className="relative bg-white w-full shadow-md rounded-lg h-20 flex items-center sm:h-12">
+          <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
+            <FontAwesomeIcon icon={serchicon} size="lg" />
+          </span>
           <input
             type="text"
-            placeholder="Serch for a country..."
             value={searchedCountry}
             onChange={(e) => setSearchedCountry(e.target.value)}
-            className="ml-10 w-60 h-8 text-xl sm:h-6 sm:ml-4 sm:text-base"
+            placeholder="Search for a country..."
+            className={`${
+              theme === "dark"
+                ? "bg-darkBlue text-white"
+                : "bg-white text-black"
+            } pl-10 py-2 border rounded-md shadow-lg w-full h-20 sm:h-12`}
           />
         </div>
+
         {/* for regions  */}
         <Dropdown
           label="select By Region"
@@ -85,8 +91,7 @@ function SearchCountries({ countries }) {
           options={area}
           onChange={(value) => setSelectArea(value)}
         />
-        </div>
-        </div>
+      </div>
       {/* creating the cards */}
       <AllCards filterdData={filterdData} />
     </>

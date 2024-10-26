@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useTheme } from "./ThemeProvider";
 
 import BackButton from "./BackButton";
 
 const DetailCountryPage = () => {
+  const { theme } = useTheme();
+
   const { code } = useParams();
   const navigate = useNavigate();
   const [country, setCountry] = useState(null);
@@ -34,23 +37,31 @@ const DetailCountryPage = () => {
   if (!country) return <div>Country data not available</div>;
 
   return (
-    <div className="mx-auto mb-10 ">
+    <div
+      className={` ${
+        theme === "dark" ? "bg-veryDarkBlue-100 " : "bg-veryLightGray"
+      }mx-auto  `}
+    >
       {/* container */}
       <div className="px-10 pt-10 flex flex-col justify-center items-start gap-10">
         <BackButton />
         {/* subContainer */}
 
-        <div className="flex flex-col items-center sm:flex-row gap-10 ">
+        <div className="flex flex-col items-center sm:flex-row gap-10">
           {/* image */}
-          <div className="w-full lg:w-[50rem] lg:h-[30rem]">
+          <div className="w-full lg:w-[40rem] lg:h-[30rem]">
             <img
               className="w-full h-full"
               src={country.flags.png}
               alt={country.name.common}
             />
           </div>
-          {/* data featched */}
-          <div className="flex flex-col gap-10">
+
+          <div
+            className={`${
+              theme === "dark" ? " text-white" : " text-black"
+            } flex flex-col gap-10 `}
+          >
             <p className="text-3xl font-bold">{country.name.common}</p>
             <div className="flex  max-lg:flex-col gap-10">
               {/* part1 */}
@@ -109,7 +120,11 @@ const DetailCountryPage = () => {
                     <button
                       key={index}
                       onClick={() => navigate(`/country/${border}`)}
-                      className="m-1 p-2 border border-gray-300 rounded card shadow-lg"
+                      className={`${
+                        theme === "dark"
+                          ? "bg-darkBlue text-white"
+                          : "bg-white text-black"
+                      } m-1 p-4 border border-gray-300 rounded card shadow-lg`}
                     >
                       {border}
                     </button>
