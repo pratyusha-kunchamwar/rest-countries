@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTheme } from "./ThemeProvider";
 import Spinner from "./Spinner";
-
 import BackButton from "./BackButton";
+import ErrorPage from "../pages/ErrorPage";
+
+const API_URL = "https://restcountries.com/v3.1/alpha";
 
 const DetailCountryPage = () => {
   const { theme } = useTheme();
@@ -17,7 +19,7 @@ const DetailCountryPage = () => {
   const ApiCall = async () => {
     setIsLoading(true);
     try {
-      const res = await fetch(`https://restcountries.com/v3.1/alpha/${code}`);
+      const res = await fetch(`${API_URL}/${code}`);
       const responce = await res.json();
       setCountry(responce[0]);
     } catch (error) {
@@ -31,13 +33,12 @@ const DetailCountryPage = () => {
     ApiCall();
   }, [code]);
 
-  if (error) return <div>{error}</div>;
   if (isLoading) {
     return <Spinner loading={isLoading} />;
   }
-
-  // country check
-  if (!country) return <div>Country data not available</div>;
+  if (!country || error) {
+    return <ErrorPage />;
+  }
 
   return (
     <div
@@ -46,11 +47,10 @@ const DetailCountryPage = () => {
       }mx-auto  `}
     >
       {/* container */}
-      <div className="px-10 pt-10 flex flex-col justify-center items-start gap-10">
+      <div className="px-10 pt-10 flex flex-col justify-center items-start ">
         <BackButton />
         {/* subContainer */}
-
-        <div className="flex flex-col items-center sm:flex-row gap-10">
+        <div className="flex flex-col items-center sm:flex-row gap-10 h-[100vh]">
           {/* image */}
           <div className="w-full lg:w-[40rem] lg:h-[30rem]">
             <img

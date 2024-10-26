@@ -1,6 +1,6 @@
 import { useTheme } from "./ThemeProvider";
 
-const Dropdown = ({ label, options = [], value, onChange }) => {
+const Dropdown = ({ label, options, value, onChange }) => {
   const { theme } = useTheme();
 
   return (

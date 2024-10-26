@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass as serchicon } from "@fortawesome/free-solid-svg-icons";
+import { useTheme } from "./ThemeProvider";
 import Dropdown from "./Dropdown";
 import AllCards from "./AllCards";
-import { useTheme } from "./ThemeProvider";
 
 import {
   findRegions,
@@ -11,7 +11,7 @@ import {
   filterCountries,
   findArea,
   findPopulation,
-} from "./helper";
+} from "../Utils/helper";
 
 function SearchCountries({ countries }) {
   const { theme } = useTheme();
@@ -22,13 +22,13 @@ function SearchCountries({ countries }) {
   const [selectPopulation, setSelectPopulation] = useState("");
   const [selectArea, setSelectArea] = useState("");
 
-  // drop down data
+  // drop down data getting from helper
   let regions = findRegions(countries);
   let subRegions = findSubRegions(countries, selectRegion);
   let population = findPopulation();
   let area = findArea();
 
-  // for filterring the data
+  // for filterring the data selected in Drop downs
   const filterdData = filterCountries(
     countries,
     searchedCountry,
@@ -71,12 +71,14 @@ function SearchCountries({ countries }) {
           onChange={(value) => setSelectRegion(value)}
         />
         {/* subregion */}
-        <Dropdown
-          label="select By SubRegion"
-          value={selectSubregion}
-          options={subRegions}
-          onChange={(value) => setSelectSubregion(value)}
-        />
+        {selectRegion && selectRegion !== "all" && (
+          <Dropdown
+            label="Select By SubRegion"
+            value={selectSubregion}
+            options={subRegions}
+            onChange={(value) => setSelectSubregion(value)}
+          />
+        )}
         {/* sort population*/}
         <Dropdown
           label="sort Population"
