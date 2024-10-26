@@ -59,7 +59,7 @@ function SearchCountries({ countries }) {
               theme === "dark"
                 ? "bg-darkBlue text-white"
                 : "bg-white text-black"
-            } pl-10 py-2 border rounded-md shadow-lg w-full h-20 sm:h-12`}
+            } pl-10 py-2 border  rounded-md shadow-lg w-full h-20 sm:h-12`}
           />
         </div>
 

@@ -56,15 +56,17 @@ const filterCountries = (
   }
   //for data sorting Population
   if (selectPopulation) {
-    return sortData(
+    result=sortData(
       result,
       "population",
       selectPopulation.includes("asc") ? "asc" : "desc"
     );
+    return result;
   }
   //to sort area
   if (selectArea) {
- return sortData(result,"area",selectArea.includes("asc")?"asc":"desc");
+    result = sortData(result, "area", selectArea.includes("asc") ? "asc" : "desc");
+    return result;
   }
 
   return result;

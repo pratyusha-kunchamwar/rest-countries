@@ -1,6 +1,6 @@
 import error from "../assets/error.jpg";
 import BackButton from "../components/BackButton";
-import Header from "../components/Header";
+
 import { useTheme } from "../components/ThemeProvider";
 
 const ErrorPage = () => {
@@ -15,7 +15,7 @@ const ErrorPage = () => {
             : "bg-veryLightGray"
         }`}
       >
-        <Header />
+    
         <div className="w-[90%] h-[60%] flex flex-col justify-center  p-10 ">
           <BackButton />
           <div className="flex flex-col items-center justify-center">

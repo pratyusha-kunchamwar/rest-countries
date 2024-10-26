@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import ErrorPage from "../pages/ErrorPage";
+import Spinner from "./Spinner";
 
 const API_URL = "https://restcountries.com/v3.1/all";
 
 function FetchApiData({ onDataFeatch }) {
   const [error, setError] = useState(null);
-  const [isloading, setIsloading] = useState(false);
+  const [isLoading, setIsloading] = useState(false);
 
   useEffect(() => {
     const featchCountriesData = async () => {
@@ -24,8 +25,8 @@ function FetchApiData({ onDataFeatch }) {
   }, []);
 
   // for the Edge case
-  if (isloading) {
-    <div>loading.............</div>;
+  if (isLoading) {
+    return <Spinner loading={isLoading} />;
   }
   if (error) {
     <div>
