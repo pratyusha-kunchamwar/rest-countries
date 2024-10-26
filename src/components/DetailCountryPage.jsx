@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTheme } from "./ThemeProvider";
+import Spinner from "./Spinner";
 
 import BackButton from "./BackButton";
 
@@ -11,10 +12,10 @@ const DetailCountryPage = () => {
   const navigate = useNavigate();
   const [country, setCountry] = useState(null);
   const [error, setError] = useState(null);
-  const [isloading, setIsloading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const ApiCall = async () => {
-    setIsloading(true);
+    setIsLoading(true);
     try {
       const res = await fetch(`https://restcountries.com/v3.1/alpha/${code}`);
       const responce = await res.json();
@@ -22,7 +23,7 @@ const DetailCountryPage = () => {
     } catch (error) {
       setError(error.message);
     } finally {
-      setIsloading(false);
+      setIsLoading(false);
     }
   };
 
@@ -31,7 +32,9 @@ const DetailCountryPage = () => {
   }, [code]);
 
   if (error) return <div>{error}</div>;
-  if (isloading) return <div>{isloading}</div>;
+  if (isLoading) {
+    return <Spinner loading={isLoading} />;
+  }
 
   // country check
   if (!country) return <div>Country data not available</div>;

@@ -6,11 +6,11 @@ const API_URL = "https://restcountries.com/v3.1/all";
 
 function FetchApiData({ onDataFeatch }) {
   const [error, setError] = useState(null);
-  const [isLoading, setIsloading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const featchCountriesData = async () => {
-      setIsloading(true);
+      setIsLoading(true);
       try {
         const countriesData = await fetch(API_URL);
         const response = await countriesData.json();
@@ -18,7 +18,7 @@ function FetchApiData({ onDataFeatch }) {
       } catch (error) {
         setError(error.message);
       } finally {
-        setIsloading(false);
+        setIsLoading(false);
       }
     };
     featchCountriesData();
