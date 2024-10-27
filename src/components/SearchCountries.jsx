@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass as searchIcon } from "@fortawesome/free-solid-svg-icons";
 import { useTheme } from "./ThemeProvider";
 import Dropdown from "./Dropdown";
 import AllCards from "./AllCards";
+import InputSerch from "./InputSerch";
 
 import {
   findRegions,
@@ -23,6 +22,9 @@ function SearchCountries({ countries }) {
     selectPopulation: "",
     selectArea: "",
   });
+  const handleSerch = (key, value) => {
+    setSearchCriteria((prev) => ({ ...prev, [key]: value }));
+  };
 
   // drop down data getting from helper
   let regions = findRegions(countries);
@@ -40,10 +42,6 @@ function SearchCountries({ countries }) {
     searchCriteria.selectArea
   );
 
-  const handleSerch = (key, value) => {
-    setSearchCriteria((prev) => ({ ...prev, [key]: value }));
-  };
-
   return (
     <>
       <div
@@ -52,31 +50,17 @@ function SearchCountries({ countries }) {
         } px-6 py-8 flex flex-col gap-10 sm:flex-row sm:justify-between`}
       >
         {/* for country search */}
-        <div className="relative bg-white w-full shadow-md rounded-lg h-20 flex items-center sm:h-12">
-          <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
-            <FontAwesomeIcon icon={searchIcon} size="lg" />
-          </span>
-          <input
-            type="text"
-            value={searchCriteria.searchedCountry}
-            onChange={(e) => handleSerch("searchedCountry", e.target.value)}
-            placeholder="Search for a country..."
-            className={`${
-              theme === "dark"
-                ? "bg-darkBlue text-white"
-                : "bg-white text-black"
-            } pl-10 py-2 border rounded-md shadow-lg w-full h-20 sm:h-12`}
-          />
-        </div>
-
+        <InputSerch
+          value={searchCriteria.searchedCountry}
+          onChange={(e) => handleSerch("searchedCountry", e.target.value)}
+        />
         {/* for regions */}
         <Dropdown
           label="Select By Region"
           value={searchCriteria.selectRegion}
           options={regions}
-          onChange={(value) => handleSerch("selectRegion", value)}
+          onChange={(e) => handleSerch("selectRegion", e.target.value)}
         />
-
         {/* subregion */}
         {searchCriteria.selectRegion &&
           searchCriteria.selectRegion !== "all" && (
@@ -84,24 +68,22 @@ function SearchCountries({ countries }) {
               label="Select By SubRegion"
               value={searchCriteria.selectSubregion}
               options={subRegions}
-              onChange={(value) => handleSerch("selectSubregion", value)}
+              onChange={(e) => handleSerch("selectSubregion", e.target.value)}
             />
           )}
-
         {/* sort population */}
         <Dropdown
           label="Sort Population"
           value={searchCriteria.selectPopulation}
           options={population}
-          onChange={(value) => handleSerch("selectPopulation", value)}
+          onChange={(e) => handleSerch("selectPopulation", e.target.value)}
         />
-
         {/* sort area */}
         <Dropdown
           label="Sort Area"
           value={searchCriteria.selectArea}
           options={area}
-          onChange={(value) => handleSerch("selectArea", value)}
+          onChange={(e) => handleSerch("selectArea", e.target.value)}
         />
       </div>
       {/* creating the cards */}
