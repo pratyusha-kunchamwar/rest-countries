@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTheme } from "./ThemeProvider";
 import Spinner from "./Spinner";
 import BackButton from "./BackButton";
 import ErrorPage from "../pages/ErrorPage";
+import FetchApiData from "./FetchApiData"
 
 const API_URL = "https://restcountries.com/v3.1/alpha";
 
@@ -12,30 +12,11 @@ const DetailCountryPage = () => {
 
   const { code } = useParams();
   const navigate = useNavigate();
-  const [country, setCountry] = useState(null);
-  const [error, setError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
-  const ApiCall = async () => {
-    setIsLoading(true);
-    try {
-      const res = await fetch(`${API_URL}/${code}`);
-      if (!res.ok) {
-        throw new Error(`Country not found: ${res.status}`);
-      }
-      const responce = await res.json();
-      setCountry(responce[0]);
-    } catch (error) {
-      setError(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const { countries, error, isLoading } = FetchApiData(`${API_URL}/${code}`);
+  const country = countries[0];
 
-  useEffect(() => {
-    ApiCall();
-  }, [code]);
-
+  // for edge case
   if (isLoading) {
     return <Spinner loading={isLoading} />;
   }

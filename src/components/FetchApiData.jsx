@@ -1,39 +1,28 @@
 import { useEffect, useState } from "react";
-import ErrorPage from "../pages/ErrorPage";
-import Spinner from "./Spinner";
 
-const API_URL = "https://restcountries.com/v3.1/all";
-
-function FetchApiData({ onDataFeatch }) {
-  const [error, setError] = useState(null);
+function FetchApiData(url) {
+  const [countries, setCountries] = useState([]);
+  const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const featchCountriesData = async () => {
+    const fetchData = async () => {
       setIsLoading(true);
       try {
-        const countriesData = await fetch(API_URL);
-
-        const response = await countriesData.json();
-        onDataFeatch(response);
-      } catch (error) {
-        setError(error);
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`Error: ${response.status}`);
+        const result = await response.json();
+        setCountries(result);
+      } catch (err) {
+        setError(err.message);
       } finally {
         setIsLoading(false);
       }
     };
-    featchCountriesData();
-  }, []);
+    fetchData();
+  }, [url]);
 
-  // for the Edge case
-  if (isLoading) {
-    return <Spinner loading={isLoading} />;
-  }
-  if (error) {
-    return <ErrorPage message={error} />;
-  }
-
-  return null;
+  return { countries, error, isLoading };
 }
 
 export default FetchApiData;

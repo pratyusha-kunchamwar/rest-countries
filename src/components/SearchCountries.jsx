@@ -56,34 +56,42 @@ function SearchCountries({ countries }) {
         />
         {/* for regions */}
         <Dropdown
-          label="Select By Region"
-          value={searchCriteria.selectRegion}
-          options={regions}
-          onChange={(e) => handleSerch("selectRegion", e.target.value)}
+          props={{
+            label: "Select By Region",
+            value: searchCriteria.selectRegion,
+            options: regions,
+            onChange: (e) => handleSerch("selectRegion", e.target.value),
+          }}
         />
         {/* subregion */}
         {searchCriteria.selectRegion &&
           searchCriteria.selectRegion !== "all" && (
             <Dropdown
-              label="Select By SubRegion"
-              value={searchCriteria.selectSubregion}
-              options={subRegions}
-              onChange={(e) => handleSerch("selectSubregion", e.target.value)}
+              props={{
+                label: "Select By SubRegion",
+                value: searchCriteria.selectSubregion,
+                options: subRegions,
+                onChange: (e) => handleSerch("selectSubregion", e.target.value),
+              }}
             />
           )}
         {/* sort population */}
         <Dropdown
-          label="Sort Population"
-          value={searchCriteria.selectPopulation}
-          options={population}
-          onChange={(e) => handleSerch("selectPopulation", e.target.value)}
+          props={{
+            label: "Sort Population",
+            value: searchCriteria.selectPopulation,
+            options: population,
+            onChange: (e) => handleSerch("selectPopulation", e.target.value),
+          }}
         />
         {/* sort area */}
         <Dropdown
-          label="Sort Area"
-          value={searchCriteria.selectArea}
-          options={area}
-          onChange={(e) => handleSerch("selectArea", e.target.value)}
+          props={{
+            label: "Sort Area",
+            value: searchCriteria.selectArea,
+            options: area,
+            onChange: (e) => handleSerch("selectArea", e.target.value),
+          }}
         />
       </div>
       {/* creating the cards */}
