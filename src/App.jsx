@@ -13,7 +13,7 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<MainLayout />}>
-        <Route path="*" element={<ErrorPage />} />
+        <Route path="/*" element={<ErrorPage />} />
         <Route index element={<HomePage />} />
         <Route path="/country/:code" element={<CountryDetailPage />} />
       </Route>

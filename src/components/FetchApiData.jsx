@@ -13,10 +13,11 @@ function FetchApiData({ onDataFeatch }) {
       setIsLoading(true);
       try {
         const countriesData = await fetch(API_URL);
+
         const response = await countriesData.json();
         onDataFeatch(response);
       } catch (error) {
-        setError(error.message);
+        setError(error);
       } finally {
         setIsLoading(false);
       }
@@ -25,13 +26,11 @@ function FetchApiData({ onDataFeatch }) {
   }, []);
 
   // for the Edge case
-  if (isLoading) {
-    return <Spinner loading={isLoading} />;
+  {
+    isLoading && <Spinner loading={isLoading} />;
   }
   if (error) {
-    <div>
-      <ErrorPage/>
-    </div>
+    return <ErrorPage message={error} />;
   }
 
   return null;

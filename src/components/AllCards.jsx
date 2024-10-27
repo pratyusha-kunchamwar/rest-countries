@@ -1,18 +1,22 @@
 import Card from "./Card";
 import { useTheme } from "./ThemeProvider";
 
-const AllCards = ({ filterdData }) => {
+const AllCards = ({ filteredData }) => {
   const { theme } = useTheme();
-  
+
   return (
     <div
-      className={`grid grid-cols-1  xsm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 place-content-center  ${
+      className={`grid grid-cols-1 min-h-screen xsm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 place-content-center  ${
         theme === "dark" ? "bg-veryDarkBlue-100 " : "bg-veryLightGray"
       }`}
     >
-      {filterdData.map((country, index) => (
-        <Card key={index} country={country} />
-      ))}
+      {filteredData && filteredData.length > 0 ? (
+        filteredData.map((country, index) => (
+          <Card key={index} country={country} />
+        ))
+      ) : (
+        <p>No countries found.</p> 
+      )}
     </div>
   );
 };

@@ -71,6 +71,7 @@ const filterCountries = (
 
   return result;
 };
+
 //custom sort function
 const sortData = (result, property, order) => {
   return result.sort((a, b) =>
