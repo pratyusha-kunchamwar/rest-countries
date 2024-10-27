@@ -26,8 +26,8 @@ function FetchApiData({ onDataFeatch }) {
   }, []);
 
   // for the Edge case
-  {
-    isLoading && <Spinner loading={isLoading} />;
+  if (isLoading) {
+    return <Spinner loading={isLoading} />;
   }
   if (error) {
     return <ErrorPage message={error} />;

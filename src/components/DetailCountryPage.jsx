@@ -21,7 +21,7 @@ const DetailCountryPage = () => {
     try {
       const res = await fetch(`${API_URL}/${code}`);
       if (!res.ok) {
-        throw new Error(`Country not found: ${res.status}`); 
+        throw new Error(`Country not found: ${res.status}`);
       }
       const responce = await res.json();
       setCountry(responce[0]);
@@ -36,8 +36,8 @@ const DetailCountryPage = () => {
     ApiCall();
   }, [code]);
 
-  {
-    isLoading && <Spinner loading={isLoading} />;
+  if (isLoading) {
+    return <Spinner loading={isLoading} />;
   }
   if (error) {
     return <ErrorPage message={error} />;
