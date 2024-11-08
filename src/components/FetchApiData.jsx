@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function FetchApiData(url) {
+function FetchApiData(apiMethod) {
   const [countries, setCountries] = useState([]);
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -9,9 +9,8 @@ function FetchApiData(url) {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error(`Error: ${response.status}`);
-        const result = await response.json();
+        const result = await apiMethod();
+
         setCountries(result);
       } catch (err) {
         setError(err.message);
@@ -20,7 +19,7 @@ function FetchApiData(url) {
       }
     };
     fetchData();
-  }, [url]);
+  }, [apiMethod]);
 
   return { countries, error, isLoading };
 }

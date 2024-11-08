@@ -1,8 +1,7 @@
-import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon as solidMoon } from "@fortawesome/free-solid-svg-icons";
 import { faMoon as regularMoon } from "@fortawesome/free-regular-svg-icons";
-import { useTheme } from "./ThemeProvider";
+import { useTheme } from "../../theme/ThemeProvider";
 
 function Header() {
   const { theme, toggleTheme } = useTheme();

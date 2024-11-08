@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useTheme } from "./ThemeProvider";
+
+import { useTheme } from "../theme/ThemeProvider";
 import Dropdown from "./Dropdown";
 import AllCards from "./AllCards";
 import InputSerch from "./InputSerch";
@@ -10,7 +11,7 @@ import {
   filterCountries,
   findArea,
   findPopulation,
-} from "../Util/helper";
+} from "../utils/helper";
 
 function SearchCountries({ countries }) {
   const { theme } = useTheme();

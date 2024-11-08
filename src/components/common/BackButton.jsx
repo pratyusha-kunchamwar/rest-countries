@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { useTheme } from "./ThemeProvider";
+import { useTheme } from "../../theme/ThemeProvider";
 
 const BackButton = () => {
   const { theme } = useTheme();

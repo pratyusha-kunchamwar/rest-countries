@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useTheme } from "./ThemeProvider";
+import { useTheme } from "../theme/ThemeProvider";
 
 const Card = ({ country }) => {
   const { theme } = useTheme();

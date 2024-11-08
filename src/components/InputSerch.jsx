@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass as searchIcon } from "@fortawesome/free-solid-svg-icons";
-import { useTheme } from "./ThemeProvider";
+
+import { useTheme } from "../theme/ThemeProvider";
 
 const InputSerch = ({ value, onChange }) => {
     const { theme } = useTheme();

@@ -1,4 +1,5 @@
 import ClipLoader from 'react-spinners/ClipLoader';
+import PropTypes from 'prop-types';
 
 const override = {
   display: 'block',
@@ -14,5 +15,8 @@ const Spinner = ({ loading }) => {
       size={150}
     />
   );
+};
+Spinner.propTypes = {
+  loading: PropTypes.bool.isRequired, 
 };
 export default Spinner;

@@ -1,5 +1,5 @@
 import Card from "./Card";
-import { useTheme } from "./ThemeProvider";
+import { useTheme } from "../theme/ThemeProvider";
 
 const AllCards = ({ filteredData }) => {
   const { theme } = useTheme();

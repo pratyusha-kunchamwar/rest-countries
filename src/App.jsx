@@ -4,10 +4,10 @@ import {
   createRoutesFromElements,
   RouterProvider,
 } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import CountryDetailPage from "./pages/CountryDetailPage";
-import ErrorPage from "./pages/ErrorPage";
-import MainLayout from "./Layout/MainLayout";
+import HomePage from "./components/pages/HomePage";
+import CountryDetailPage from "./components/pages/CountryDetailPage";
+import ErrorPage from "./components/pages/ErrorPage";
+import MainLayout from "./layout/MainLayout";
 
 function App() {
   const router = createBrowserRouter(
