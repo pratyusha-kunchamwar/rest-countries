@@ -15,7 +15,7 @@ const AllCards = ({ filteredData }) => {
           <Card key={index} country={country} />
         ))
       ) : (
-        <p>No countries found.</p> 
+        <p>No Countries Found.</p> 
       )}
     </div>
   );

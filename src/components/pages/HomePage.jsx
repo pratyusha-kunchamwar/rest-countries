@@ -23,7 +23,7 @@ const HomePage = () => {
       {countries.length > 0 ? (
         <SearchCountries countries={countries} />
       ) : (
-        <p>NO Countries found</p>
+        <p>NO Countries Found</p>
       )}
     </>
   );
