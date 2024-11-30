@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useTheme } from "../theme/ThemeProvider";
 import Dropdown from "./Dropdown";
 import AllCards from "./AllCards";
-import InputSerch from "./InputSerch";
+import InputSearch from "./InputSearch";
 
 import {
   findRegions,
@@ -51,7 +51,7 @@ function SearchCountries({ countries }) {
         } px-6 py-8 flex flex-col gap-10 sm:flex-row sm:justify-between`}
       >
         {/* for country search */}
-        <InputSerch
+        <InputSearch
           value={searchCriteria.searchedCountry}
           onChange={(e) => handleSerch("searchedCountry", e.target.value)}
         />
